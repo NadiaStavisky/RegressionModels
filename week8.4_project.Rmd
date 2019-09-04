@@ -123,8 +123,15 @@ In the mtcars data set, the mean value of mpg is approximately `r  mean(data$mpg
 3. F-statistic: 33.57 > 1, provides evidence against the null hypothesis H0 and suggests that at least one of the variables must be related to mpg.  
 4. p-value: 1.506e-10  p-value associated with the F-statistic is much smaller then 0.05, we can infer that there is an association between the predictor and the response. We can reject the null hypothesis-that stands on there is no relationship to exist between X and Y. 
 
+##Diagnostic plots (Appendix 3)
+1. Residuals vs Fitted - does not show any pattern, linear model explained relationship between predictors (Number of cylinders, Gross horsepower, Weight (1000 lbs), Transmission) and respond (Miles/(US) gallon);
+2. Normal Q-Q - residuals quite well follow the line, while we can see some observations off (17, 18, 20).
+3. Scale-Location - almost all residuals spread equaly along the range of predictors, no signs of homoscedasticity. 
+4. Residuals vs Leverage - there is no influential or cases, all cases are inside of the Cook’s distance lines.
+
+
 #Conclusion
-On average, manual transmission is better than automatic transmission by 1.8 mpg. However, transmission type is not the only factor accounting for MPG, cylinders, horsepower, and weitght are the important factors in affecting the MPG.
+Out of all variables the best Multiple linear Regression was fitted that describes relationship between predictors (Number of cylinders, Gross horsepower, Weight (1000 lbs), Transmission) and respond (Miles/(US). Model performance and residual diagnostics confirmed a good fit. Model estimates that on average, manual transmission is better than automatic transmission by 1.8 mpg. However, transmission type is not the only factor accounting for MPG, cylinders, horsepower, and weitght are the important factors in affecting the MPG.
 
 #Appendix 1. Exploratory data analysis. Correlation between mtcars variables.
 ```{r fig1, fig.height = 35, fig.width = 35, message=FALSE}
@@ -154,4 +161,11 @@ glog <- ggplot(data, aes(mpg)) +
   labs(title = "MPG histogram by Transmission Type",x = "Log(MPG)")
 #grid.arrange(g, glog, nrow = 2)
 g
+```
+
+#Appendix 3. Diagnostic plots.
+
+```{r}
+par(mfrow = c(2,2))
+plot(best)
 ```
